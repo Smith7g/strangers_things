@@ -13,11 +13,23 @@ const BASEURL =
     }
  }
 
- export async function registerPerson() {
+ export async function registerPerson(event) {
+     const registerUsername = event.target[0].value
+     const registerPassword = event.target[1].value
     try {
-      const {data} = await  fetch(`${BASEURL}/users/register`)
-    }catch {
-
+      const response = await fetch(`${BASEURL}/users/register`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user: {
+            username: registerUsername,
+            password: registerPassword
+          }
+        })})
+    }catch (err) {
+        console.error(err)
     }
 }
   
