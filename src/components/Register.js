@@ -1,11 +1,19 @@
 import React from 'react'
+import { registerPerson} from '../api';
 
 const Register = ({username,setUsername,password, setPassword,setConfirmPassword,confirmPassword}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(username, password);
+    
+    if (password !== confirmPassword) {
+      alert("Password don't match.")
+  } else {
+    registerPerson(event);
     setUsername(" ");
     setPassword(" ");
+    setConfirmPassword(" ");
+    };
   };
   const userNameChange = (event) => {
     setUsername(event.target.value);
@@ -16,16 +24,14 @@ const Register = ({username,setUsername,password, setPassword,setConfirmPassword
 
   const confirmPasswordChange = (event) => {
     setConfirmPassword(event.target.value);
-    if (!password === confirmPassword) {
-        return error
-    }
   };
   
   return (
-    <>
-      <h1>Registration</h1>
+    <div id="login">
+      <h1 className='title'>Registration</h1>
       <form id="loginForm" onSubmit={handleSubmit} >
-        <input
+      <div className = "boxes">
+        <input className = "input"
           type="text"
           name="username"
           placeholder="UserName"
@@ -33,11 +39,9 @@ const Register = ({username,setUsername,password, setPassword,setConfirmPassword
           minLength="1"
           onChange={userNameChange }
           value={username}
-         
         />
-         
-        <input
-          type="text"
+        <input className = "input"
+          type="password"
           name="password"
           placeholder="Password"
           required={true}
@@ -45,8 +49,8 @@ const Register = ({username,setUsername,password, setPassword,setConfirmPassword
           onChange={passwordChange}
           value={password}
         />
-        <input
-          type="text"
+        <input className = "input"
+          type="password"
           name="confirm password"
           placeholder="Confirm Password"
           required={true}
@@ -55,8 +59,9 @@ const Register = ({username,setUsername,password, setPassword,setConfirmPassword
           value={confirmPassword}
         />
         <button type="submit">Sign Up</button>
+        </div>
       </form>
-    </>
+    </div>
   );
 };
 

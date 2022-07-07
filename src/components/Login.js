@@ -1,22 +1,24 @@
 import React, { useState, useEffect } from "react";
 // import {handleSubmit, userNameChange, passwordChange} from '../api';
 import { Link } from 'react-router-dom'
+import { confirmLogin } from "../api";
 
 const Login = ({username,setUsername,password,setPassword}) => {
-  console.log(setPassword,setUsername)
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(username, password);
     setUsername(" ");
     setPassword(" ");
+    confirmLogin(event);
   };
+
   const userNameChange = (event) => {
     setUsername(event.target.value);
   };
+
   const passwordChange = (event) => {
     setPassword(event.target.value);
   };
-
 
   return (
     <div id="login">
@@ -36,7 +38,7 @@ const Login = ({username,setUsername,password,setPassword}) => {
           value = {username}
         />
         <input className ="input"
-          type="text"
+          type="password"
           name="password"
           placeholder="Password"
           required={true}

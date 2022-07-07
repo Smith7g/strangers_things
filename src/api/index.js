@@ -28,9 +28,43 @@ export async function registerPerson(event) {
         },
       }),
     });
+    const result = await response.json();
+    const token = result.data.token
+    console.log(result)
+    localStorage.setItem("token", token)
+    const tokenFromStorage = localStorage.getItem("token")
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export async function confirmLogin(event) {
+  const loginUsername = event.target[0].value;
+  const loginPassword = event.target[1].value;
+  // const token = result.data.token
+  const tokenFromStorage = localStorage.getItem("token")
+  console.log(tokenFromStorage)
+  try {
+    const response = await fetch(`${BASEURL}/users/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'Authorization': `Bearer ${tokenFromStorage}`
+      },
+      body: JSON.stringify({
+        user: {
+          username: loginUsername,
+          password: loginPassword,
+        },
+      }),
+    });
+    const result = await response.json();
+    console.log(result)
   } catch (err) {
     console.error(err);
   }
 }
 
 
+
+//https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
