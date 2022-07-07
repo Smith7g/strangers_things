@@ -61,18 +61,15 @@ export async function confirmLogin(loginUsername,loginPassword) {
   }
 }
 
-export async function getProfile (tokenFromStorage) {
+export async function getProfile (token) {
   const response = await fetch(`${BASEURL}/users/me`, {
     headers: {
       "Content-Type": "application/json",
-      'Authorization': `Bearer ${tokenFromStorage}`
+      'Authorization': `Bearer ${token}`
     }, 
   });
   const result = await response.json()
   const data = result.data
+  console.log(data, "this is data")
   return data
 }
-
-
-
-//https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage

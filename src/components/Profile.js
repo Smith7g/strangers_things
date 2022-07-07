@@ -6,7 +6,7 @@ const Profile = ({username}) => {
     let token = ""
     const [myInfo,setMyInfo]=useState({})
     useEffect (() => {
-        let token = localStorage.getItem('token')
+        token = localStorage.getItem('token')
         async function getMyInfo() {
             const myReturnedInfo = await getProfile(token)
             console.log(myReturnedInfo, 'api info')
@@ -16,9 +16,9 @@ const Profile = ({username}) => {
     },[])
     return (
         <div className="boxes">
-         {/* <h1>`Welcome ${username}`</h1> */}
-         <div>this is a test</div>
-
+         <h1>{`Welcome ${username}`}</h1>
+         <h3>Messages to Me:</h3>
+        {/* {messages will go here} */}
         </div>
     )
 

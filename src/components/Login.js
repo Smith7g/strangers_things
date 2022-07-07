@@ -1,21 +1,20 @@
 import React, { useState, useEffect } from "react";
 // import {handleSubmit, userNameChange, passwordChange} from '../api';
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { confirmLogin } from "../api";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const loginInfo =  await confirmLogin(username,password);
+      const token =  await confirmLogin(username,password);
       localStorage.setItem("token", token)
-      const token = localStorage.getItem("token")
       console.log(loginInfo, 'this is some info')
       setUsername(" ");
       setPassword(" ");
-      
     } catch (error) {
       console.log(error)
     }
@@ -55,7 +54,7 @@ const Login = () => {
           onChange={passwordChange}
           value = {password}
         />
-        <button type="submit" >Log In</button>
+        <Navigate to = "/Profile" ><button type="submit" >Log In</button></Navigate>
         </div>
       </form>
       <Link to = "/Register" >Don't have account? Sign up here!</Link>
