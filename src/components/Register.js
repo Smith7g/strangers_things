@@ -1,9 +1,11 @@
 import React from 'react'
 import { registerPerson} from '../api';
 
-const Register = ({regUsername,
-  regPassword,setRegUsername,setRegPassword,confirmPassword, setConfirmPassword}) => {
-  const handleSubmit = (event) => {
+const Register = () => {
+    const [regUsername, setRegUsername] = useState("");
+    const [regPassword, setRegPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const handleSubmit = (event) => {
     event.preventDefault();
 
     

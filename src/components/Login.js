@@ -3,13 +3,22 @@ import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom'
 import { confirmLogin } from "../api";
 
-const Login = ({username,setUsername,password,setPassword}) => {
-  const handleSubmit = (event) => {
+const Login = () => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(username, password);
-    setUsername(" ");
-    setPassword(" ");
-    confirmLogin(event);
+    try {
+      const loginInfo =  await confirmLogin(username,password);
+      localStorage.setItem("token", token)
+      const token = localStorage.getItem("token")
+      console.log(loginInfo, 'this is some info')
+      setUsername(" ");
+      setPassword(" ");
+      
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const userNameChange = (event) => {
@@ -46,7 +55,7 @@ const Login = ({username,setUsername,password,setPassword}) => {
           onChange={passwordChange}
           value = {password}
         />
-        <Link to="/Profile"><button type="submit" >Log In</button></Link>
+        <button type="submit" >Log In</button>
         </div>
       </form>
       <Link to = "/Register" >Don't have account? Sign up here!</Link>
