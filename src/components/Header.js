@@ -1,21 +1,13 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/posts">
-        <Link to = "/Register" >Don't have account? Sign up here!</Link>
-        </Route>
-        <Route path="/Profile">
-          <Profile />
-        </Route>
-        {/* <Route exact path="/">
-          <Login />
-        </Route> */}
-      </Routes>
-    </BrowserRouter>
+    <div className="header">
+      <Link className="titleMain" to="/">Stranger's Things</Link>
+      <Link className="navButton" to="/Posts">POSTS</Link>
+      <Link className="navButton" to="/">LOGIN</Link>
+    </div>
   );
 };
 

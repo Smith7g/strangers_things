@@ -46,7 +46,7 @@ const Login = ({username,setUsername,password,setPassword}) => {
           onChange={passwordChange}
           value = {password}
         />
-        <button type="submit">Log In</button>
+        <Link to="/Profile"><button type="submit" >Log In</button></Link>
         </div>
       </form>
       <Link to = "/Register" >Don't have account? Sign up here!</Link>

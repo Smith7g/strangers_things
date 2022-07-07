@@ -49,7 +49,7 @@ export async function confirmLogin(event) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${tokenFromStorage}`
+        // 'Authorization': `Bearer ${tokenFromStorage}`
       },
       body: JSON.stringify({
         user: {
@@ -59,10 +59,22 @@ export async function confirmLogin(event) {
       }),
     });
     const result = await response.json();
-    console.log(result)
+    return result
   } catch (err) {
     console.error(err);
   }
+}
+
+export async function getProfile (tokenFromStorage) {
+  const response = await fetch(`${BASEURL}/users/me`, {
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${tokenFromStorage}`
+    }, 
+  });
+  const result = await response.json()
+  const data = result.data
+  return data
 }
 
 

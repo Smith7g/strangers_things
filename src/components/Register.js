@@ -1,25 +1,26 @@
 import React from 'react'
 import { registerPerson} from '../api';
 
-const Register = ({username,setUsername,password, setPassword,setConfirmPassword,confirmPassword}) => {
+const Register = ({regUsername,
+  regPassword,setRegUsername,setRegPassword,confirmPassword, setConfirmPassword}) => {
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(username, password);
+
     
-    if (password !== confirmPassword) {
+    if (regPassword !== confirmPassword) {
       alert("Password don't match.")
   } else {
     registerPerson(event);
-    setUsername(" ");
-    setPassword(" ");
+    setRegUsername(" ");
+    setRegPassword(" ");
     setConfirmPassword(" ");
     };
   };
   const userNameChange = (event) => {
-    setUsername(event.target.value);
+    setRegUsername(event.target.value);
   };
   const passwordChange = (event) => {
-    setPassword(event.target.value);
+    setRegPassword(event.target.value);
   };
 
   const confirmPasswordChange = (event) => {
@@ -38,7 +39,7 @@ const Register = ({username,setUsername,password, setPassword,setConfirmPassword
           required={true}
           minLength="1"
           onChange={userNameChange }
-          value={username}
+          value={regUsername}
         />
         <input className = "input"
           type="password"
@@ -47,7 +48,7 @@ const Register = ({username,setUsername,password, setPassword,setConfirmPassword
           required={true}
           minLength="8"
           onChange={passwordChange}
-          value={password}
+          value={regPassword}
         />
         <input className = "input"
           type="password"
