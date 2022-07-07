@@ -4,17 +4,17 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 const Header = () => {
   return (
     <BrowserRouter>
-      <Switch>
+      <Routes>
         <Route path="/posts">
-          <Posts />
+        <Link to = "/Register" >Don't have account? Sign up here!</Link>
         </Route>
-        <Route path="/register">
-          <Register />
+        <Route path="/Profile">
+          <Profile />
         </Route>
-        <Route exact path="/">
+        {/* <Route exact path="/">
           <Login />
-        </Route>
-      </Switch>
+        </Route> */}
+      </Routes>
     </BrowserRouter>
   );
 };

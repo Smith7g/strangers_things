@@ -1,11 +1,18 @@
-import React, { useState } from "react";
-import { handleSubmit, userNameChange, passwordChange } from "../api";
+import React from 'react'
 
-const Register = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const [confirmPassword, setConfirmPassword] = useState("");
+const Register = ({username,setUsername,password, setPassword,setConfirmPassword,confirmPassword}) => {
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(username, password);
+    setUsername(" ");
+    setPassword(" ");
+  };
+  const userNameChange = (event) => {
+    setUsername(event.target.value);
+  };
+  const passwordChange = (event) => {
+    setPassword(event.target.value);
+  };
 
   const confirmPasswordChange = (event) => {
     setConfirmPassword(event.target.value);
@@ -13,20 +20,22 @@ const Register = () => {
         return error
     }
   };
-
+  
   return (
     <>
       <h1>Registration</h1>
-      <form id="loginForm">
+      <form id="loginForm" onSubmit={handleSubmit} >
         <input
           type="text"
           name="username"
           placeholder="UserName"
           required={true}
           minLength="1"
-          onChange={userNameChange}
+          onChange={userNameChange }
           value={username}
+         
         />
+         
         <input
           type="text"
           name="password"

@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from "react";
-import {handleSubmit, userNameChange, passwordChange} from '../api';
+// import {handleSubmit, userNameChange, passwordChange} from '../api';
 import { Link } from 'react-router-dom'
 
-const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const Login = ({username,setUsername,password,setPassword}) => {
+  console.log(setPassword,setUsername)
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(username, password);
+    setUsername(" ");
+    setPassword(" ");
+  };
+  const userNameChange = (event) => {
+    setUsername(event.target.value);
+  };
+  const passwordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
 
   return (
     <div id="login">

@@ -33,17 +33,4 @@ export async function registerPerson(event) {
   }
 }
 
-export const handleSubmit = (event) => {
-  event.preventDefault();
-  console.log(username, password);
-  setUsername(" ");
-  setPassword(" ");
-};
 
-export const userNameChange = (event) => {
-  setUsername(event.target.value);
-};
-
-export const passwordChange = (event) => {
-  setPassword(event.target.value);
-};
