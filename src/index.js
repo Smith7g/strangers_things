@@ -10,10 +10,10 @@ import { Register } from "./components";
 const root = ReactDOM.createRoot(document.getElementById("app"));
 root.render(
   <BrowserRouter>
-    <div>
-      <Posts />
-      <Login />
-      <Register />
-    </div>
+    <Routes>
+        <Route path="/Posts" element={<Posts />}/>
+        <Route path="/Register" element={<Register />}/>
+        <Route exact path="/" element={<Login />}/>
+    </Routes>
   </BrowserRouter>
 );

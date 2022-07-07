@@ -44,7 +44,6 @@ const Register = () => {
         />
         <button type="submit">Log In</button>
       </form>
-      <a href="#">Click here to Register!</a>
     </>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {handleSubmit, userNameChange, passwordChange} from '../api';
+import { Link } from 'react-router-dom'
 // import { registerPerson } from '../api'
 
 const Login = () => {
@@ -33,7 +34,7 @@ const Login = () => {
         />
         <button type="submit">Log In</button>
       </form>
-      <a href="#">Click here to Register!</a>
+      <Link to = "/Register" >Don't have account? Sign up here!</Link>
     </div>
   );
 };
