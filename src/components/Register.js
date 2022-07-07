@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import {handleSubmit, userNameChange, passwordChange} from '../api';
-// import Login from "./Login";
+import { handleSubmit, userNameChange, passwordChange } from "../api";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -9,20 +8,24 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const confirmPasswordChange = (event) => {
-    setConfirmPassword(event.target.value)
-  }
+    setConfirmPassword(event.target.value);
+    if (!password === confirmPassword) {
+        return error
+    }
+  };
 
   return (
     <>
+      <h1>Registration</h1>
       <form id="loginForm">
-      <input
+        <input
           type="text"
           name="username"
           placeholder="UserName"
           required={true}
           minLength="1"
           onChange={userNameChange}
-          value = {username}
+          value={username}
         />
         <input
           type="text"
@@ -31,7 +34,7 @@ const Register = () => {
           required={true}
           minLength="8"
           onChange={passwordChange}
-          value = {password}
+          value={password}
         />
         <input
           type="text"
@@ -42,7 +45,7 @@ const Register = () => {
           onChange={confirmPasswordChange}
           value={confirmPassword}
         />
-        <button type="submit">Log In</button>
+        <button type="submit">Sign Up</button>
       </form>
     </>
   );
