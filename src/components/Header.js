@@ -35,7 +35,7 @@ const Header = ({ loggedIn, setLoggedIn }) => {
           <Link className="navButton" to="/Posts">
             POSTS
           </Link>
-          <Link className="navButton" to="/Login">
+          <Link className="navButton" to="/">
             LOGIN
           </Link>
         </>

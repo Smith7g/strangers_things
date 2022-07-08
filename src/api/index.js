@@ -46,7 +46,6 @@ export async function confirmLogin(loginUsername,loginPassword) {
       }),
     });
     const result = await response.json();
-    // console.log(result)
     const token = result.data.token;
     return token;
 }
@@ -59,9 +58,7 @@ export async function getProfile(token) {
       'Authorization': `Bearer ${token}`
     }, 
   });
-  // console.log(response,'whats this')
   const result = await response.json()
-  // console.log(result, "i am batman")
   const profile = result.data;
   return profile;
 }
@@ -106,7 +103,7 @@ export async function addMessage(token, postid, message) {
   return result;
 }
 
-export async function newUserPost(token) {
+export async function newUserPost(token,post) {
 const response = await fetch(`${BASEURL}/posts`, {
       method: 'POST',
       headers: {

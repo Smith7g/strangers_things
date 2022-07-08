@@ -69,3 +69,8 @@ button {
     width: 300px;
     height: 30px;
 }
+.edit,.delete{
+    width: 100px;
+    height: 30px;
+}
+.allPosts
