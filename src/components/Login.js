@@ -1,20 +1,25 @@
 import React, { useState, useEffect } from "react";
-// import {handleSubmit, userNameChange, passwordChange} from '../api';
-import { Link, Navigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { confirmLogin } from "../api";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const token =  await confirmLogin(username,password);
+      if(token){
       localStorage.setItem("token", token)
-      console.log(loginInfo, 'this is some info')
-      setUsername(" ");
-      setPassword(" ");
+      console.log(token, 'this is some info')
+      setUsername("");
+      setPassword("");
+      navigate('/Home')
+      } else {
+        alert('Incorrect Username or Password')
+      }
     } catch (error) {
       console.log(error)
     }
@@ -54,7 +59,7 @@ const Login = () => {
           onChange={passwordChange}
           value = {password}
         />
-        <Navigate to = "/Profile" ><button type="submit" >Log In</button></Navigate>
+        <button type="submit" >Log In</button>
         </div>
       </form>
       <Link to = "/Register" >Don't have account? Sign up here!</Link>

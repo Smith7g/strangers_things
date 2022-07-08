@@ -1,21 +1,28 @@
-import React from 'react'
+import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom';
 import { registerPerson} from '../api';
 
 const Register = () => {
     const [regUsername, setRegUsername] = useState("");
     const [regPassword, setRegPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const navigate = useNavigate();
+
     const handleSubmit = (event) => {
     event.preventDefault();
 
     
     if (regPassword !== confirmPassword) {
-      alert("Password don't match.")
+      alert("Passwords don't match!")
+      setRegPassword("");
+      setConfirmPassword("");
   } else {
     registerPerson(event);
-    setRegUsername(" ");
-    setRegPassword(" ");
-    setConfirmPassword(" ");
+    setRegUsername("");
+    setRegPassword("");
+    setConfirmPassword("");
+    alert("Registration successful please Login")
+    navigate('/')
     };
   };
   const userNameChange = (event) => {

@@ -12,6 +12,7 @@ export async function getPosts() {
   }
 }
 
+
 export async function registerPerson(event) {
   const registerUsername = event.target[0].value;
   const registerPassword = event.target[1].value;
@@ -39,7 +40,6 @@ export async function registerPerson(event) {
 }
 
 export async function confirmLogin(loginUsername,loginPassword) {
-  console.log(loginUsername,loginPassword, "api user")
   try {
     const response = await fetch(`${BASEURL}/users/login`, {
       method: "POST",
@@ -68,8 +68,10 @@ export async function getProfile (token) {
       'Authorization': `Bearer ${token}`
     }, 
   });
+  console.log(response,'whats this')
   const result = await response.json()
+  console.log(result, "i am batman")
   const data = result.data
-  console.log(data, "this is data")
   return data
 }
+
