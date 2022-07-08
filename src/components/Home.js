@@ -17,17 +17,17 @@ const Home = ({loggedIn}) => {
     },[]);
 
     return(
-        <div>
+        <div className = "Home">
             {loggedIn ? (
                 <>
-                    <h1>Welcome to Stranger's Things</h1>
+                    <h1 className = "homeTitle">Welcome to Stranger's Things</h1>
                     {myInfo && myInfo.username ? <h3>{`Logged in as ${myInfo.username}`}</h3> : null}
-                    <button onClick={(()=>{navigate('/Profile')})}>VIEW PROFILE</button>
+                    <button className = "homeButton" onClick={(()=>{navigate('/Profile')})}>VIEW PROFILE</button>
                 </>
             ) : (
                 <>
-                <h1>Welcome to Stranger's Things</h1>
-                <button onClick={(()=>{navigate('/')})}>PLEASE LOGIN</button>
+                <h1 className = "homeTitle">Welcome to Stranger's Things</h1>
+                <button className = "homeButton" onClick={(()=>{navigate('/')})}>PLEASE LOGIN</button>
                 </>
             )}
             

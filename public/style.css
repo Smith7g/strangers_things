@@ -54,3 +54,18 @@ button {
 .navButton:hover{
     text-decoration: underline;
 }
+
+.Home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homeTitle {
+    font-family: Barlow, Arial, Helvetica, sans-serif;
+}
+
+.homeButton {
+    width: 300px;
+    height: 30px;
+}
