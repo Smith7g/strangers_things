@@ -1,17 +1,10 @@
-// import { setUsername, setPassword } from '../login';
-
 const BASEURL = "https://strangers-things.herokuapp.com/api/2206-FTB-ET-WEB-FT";
 export async function getPosts() {
-  try {
     const response = await fetch(`${BASEURL}/posts`);
     const result = await response.json();
     const posts = result.data.posts;
     return posts;
-  } catch (error) {
-    throw error;
-  }
 }
-
 
 export async function registerPerson(event) {
   const registerUsername = event.target[0].value;
@@ -40,7 +33,6 @@ export async function registerPerson(event) {
 }
 
 export async function confirmLogin(loginUsername,loginPassword) {
-  try {
     const response = await fetch(`${BASEURL}/users/login`, {
       method: "POST",
       headers: {
@@ -54,24 +46,78 @@ export async function confirmLogin(loginUsername,loginPassword) {
       }),
     });
     const result = await response.json();
-    console.log(result)
-    return result.data.token
-  } catch (err) {
-    console.error(err);
-  }
+    // console.log(result)
+    const token = result.data.token;
+    return token;
 }
 
-export async function getProfile (token) {
+export async function getProfile(token) {
+  console.log(token, "token api");
   const response = await fetch(`${BASEURL}/users/me`, {
     headers: {
       "Content-Type": "application/json",
       'Authorization': `Bearer ${token}`
     }, 
   });
-  console.log(response,'whats this')
+  // console.log(response,'whats this')
   const result = await response.json()
-  console.log(result, "i am batman")
-  const data = result.data
-  return data
+  // console.log(result, "i am batman")
+  const profile = result.data;
+  return profile;
 }
 
+export async function modifiedPost(token, post, postid) {
+  const response = await fetch(`${BASEURL}/posts/${postid}`, {
+    method: 'PATCH',
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      post: post
+    })
+  });
+  const result = await response.json();
+}
+
+export async function deletePost(token, postid) {
+  const response = await fetch(`${BASEURL}/posts/${postid}`, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
+    }
+  });
+  const result = await response.json();
+}
+
+export async function addMessage(token, postid, message) {
+  const response = await fetch(`${BASEURL}/posts/${postid}/messages`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({
+      message: message
+    })
+  });
+  const result = await response.json();
+  return result;
+}
+
+export async function newUserPost(token) {
+const response = await fetch(`${BASEURL}/posts`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        post: post
+      })
+    });
+    const result = await response.json();
+    const newPost = result.data.posts;
+    return newPost;
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from 'react-router-dom'
 import { confirmLogin } from "../api";
 
-const Login = () => {
+const Login = ({setLoggedIn}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -14,9 +14,11 @@ const Login = () => {
       if(token){
       localStorage.setItem("token", token)
       console.log(token, 'this is some info')
+      console.log(localStorage.getItem("token"))
       setUsername("");
       setPassword("");
-      navigate('/Home')
+      navigate('/Home'); 
+      setLoggedIn(true);
       } else {
         alert('Incorrect Username or Password')
       }

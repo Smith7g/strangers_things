@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState,useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { getProfile } from '../api'
 
 const Profile = () => {
@@ -22,4 +22,5 @@ const Profile = () => {
     )
 
 }
+
 export default Profile;

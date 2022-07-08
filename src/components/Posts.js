@@ -10,6 +10,7 @@ const Posts = () => {
     }
     fetchPosts();
   }, []);
+
   return (
     <div>
       {allPosts.length
@@ -34,4 +35,5 @@ const Posts = () => {
     </div>
   );
 };
+
 export default Posts;

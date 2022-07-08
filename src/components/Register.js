@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { registerPerson} from '../api';
 
@@ -11,7 +11,6 @@ const Register = () => {
     const handleSubmit = (event) => {
     event.preventDefault();
 
-    
     if (regPassword !== confirmPassword) {
       alert("Passwords don't match!")
       setRegPassword("");
