@@ -24,7 +24,6 @@ export async function registerPerson(event) {
     });
     const result = await response.json();
     const token = result.data.token
-    console.log(result)
     localStorage.setItem("token", token)
     const tokenFromStorage = localStorage.getItem("token")
   } catch (err) {
@@ -51,7 +50,6 @@ export async function confirmLogin(loginUsername,loginPassword) {
 }
 
 export async function getProfile(token) {
-  console.log(token, "token api");
   const response = await fetch(`${BASEURL}/users/me`, {
     headers: {
       "Content-Type": "application/json",

@@ -13,8 +13,6 @@ const Login = ({setLoggedIn}) => {
       const token =  await confirmLogin(username,password);
       if(token){
       localStorage.setItem("token", token)
-      console.log(token, 'this is some info')
-      console.log(localStorage.getItem("token"))
       setUsername("");
       setPassword("");
       navigate('/Home'); 

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getPosts,getProfile } from "../api";
 
-const Posts = ({ loggedIn }) => {
+const Posts = ({ loggedIn, setSinglePost,singlePost}) => {
   const [allPosts, setAllPosts] = useState([]);
   const [person, setPerson] = useState([]);
   const navigate = useNavigate();
@@ -20,6 +20,12 @@ const Posts = ({ loggedIn }) => {
     }
     fetchPerson();
   }, []);
+
+  const catchId = (Id) => {
+
+    setSinglePost(Id)
+    return singlePost
+  }
 
   return (
     <div className="posts">
@@ -51,8 +57,10 @@ const Posts = ({ loggedIn }) => {
                       {post.author._id === person._id  ?<button
                         className="Edit"
                         onClick={() => {
-                          navigate("/UserPost");
+                          catchId(post._id)
+                          navigate(`/UserPost`)
                         }} 
+                        
                       >
                         View
                       </button> :<button

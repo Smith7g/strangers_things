@@ -8,7 +8,6 @@ const Home = ({loggedIn}) => {
     const [myInfo,setMyInfo]=useState({})
     useEffect (() => {
         token = localStorage.getItem('token')
-        console.log(token, "this is our token")
         async function getMyInfo() {
             const myReturnedInfo = await getProfile(token)
             setMyInfo(myReturnedInfo)
