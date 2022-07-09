@@ -18,6 +18,8 @@ console.log(onePost, 'im a postman')
   return  (
     <div>
         {onePost.map((post,index)=>{
+            console.log(post._id, 'Dont stop believing')
+           if (singlePost === post._id)
             return (
                 <div key={index}>
                   <>

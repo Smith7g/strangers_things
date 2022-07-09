@@ -66,7 +66,8 @@ const Posts = ({ loggedIn, setSinglePost,singlePost}) => {
                       </button> :<button
                         className="View"
                         onClick={() => {
-                          navigate("/UserPost");
+                          catchId(post._id)
+                          navigate("/OthersPost");
                         }} 
                       >
                         Send Message
