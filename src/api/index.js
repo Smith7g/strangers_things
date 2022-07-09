@@ -116,3 +116,4 @@ const response = await fetch(`${BASEURL}/posts`, {
     const newPost = result.data.posts;
     return newPost;
 }
+
