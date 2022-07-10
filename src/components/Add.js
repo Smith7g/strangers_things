@@ -89,9 +89,6 @@ const Add = () => {
           </label>
           <button
             type="submit"
-            // onClick={() => {
-            //   navigate("/Posts");
-            // }}
           >
             CREATE
           </button>

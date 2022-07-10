@@ -1,11 +1,17 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getPosts, getProfile } from "../api";
+import { deletePost, getPosts, getProfile, modifiedPost } from "../api";
 
 const UserPost = ({ loggedIn, singlePost }) => {
+  const navigate = useNavigate();
   const [onePost, setOnePost] = useState([]);
   const [editForm, setEditForm] = useState(false);
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [location, setLocation] = useState("");
 
   useEffect(() => {
     async function fetchPosts() {
@@ -16,9 +22,48 @@ const UserPost = ({ loggedIn, singlePost }) => {
     fetchPosts();
   }, []);
 
-  const editFormFunc = () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+      const token =  localStorage.getItem('token')
+      const postid = singlePost;
+      const post = {
+          title : title,
+          description: description,
+          price: price,
+          location: location
+      }
+      const newPost = await modifiedPost(token, post, postid)
+      navigate("/Posts")
+      return newPost;
+  };
+
+  const titleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const descriptionChange = (event) => {
+    setDescription(event.target.value);
+  };
+
+  const priceChange = (event) => {
+    setPrice(event.target.value);
+  };
+
+  const locationChange = (event) => {
+    setLocation(event.target.value);
+  };
+
+  const deleteUserPost = async () => {
+    const token =  localStorage.getItem('token')
+    const postid = singlePost;
+    const erasePost = await deletePost(token, postid);
+    navigate("/Posts")
+    return erasePost;
+  }
+
+  const editFormFunc = (post) => {
     return (
-      <form
+      <form onSubmit={handleSubmit}
         id="loginForm"
       >
         <div className="boxes">
@@ -26,36 +71,32 @@ const UserPost = ({ loggedIn, singlePost }) => {
             className="input"
             type="text"
             name="title"
-            // defaultValue={title}
-            // required={true}
-            // onChange={titleChange}
-            // value={title}
+            defaultValue={post.title}
+            required={true}
+            onChange={titleChange}
           />
           <input
             className="input"
             type="text"
             name="description"
-            defaultValue="Description*"
-            // required={true}
-            // onChange={descriptionChange}
-            // value={description}
+            defaultValue={post.description}
+            required={true}
+            onChange={descriptionChange}
           />
           <input
             className="input"
             type="text"
             name="price"
-            defaultValue="Price*"
-            // required={true}
-            // onChange={priceChange}
-            // value={price}
+            defaultValue={post.price}
+            required={true}
+            onChange={priceChange}
           />
           <input
             className="input"
             type="text"
             name="location"
-            defaultValue="Location"
-            // onChange={locationChange}
-            // value={location}
+            defaultValue={post.location}
+            onChange={locationChange}
           />
           <label>
             <input type="checkbox" />
@@ -63,9 +104,6 @@ const UserPost = ({ loggedIn, singlePost }) => {
           </label>
           <button
             type="submit"
-            // onClick={() => {
-            //   navigate("/Posts");
-            // }}
           >
             CREATE
           </button>
@@ -100,17 +138,16 @@ const UserPost = ({ loggedIn, singlePost }) => {
                 </button>
                 <button
                   className="deleteButton"
-                  // onClick={() => {
-                  //   catchId(post._id);
-                  //   navigate(`/UserPost`);
-                  // }}
+                  onClick={() => {
+                    deleteUserPost()
+                  }}
                 >
                   Delete
                 </button>
               </>
-              <form>
-              {editForm ? editFormFunc() : null}
-              </form>
+              <div>
+              {editForm ? editFormFunc(post) : null}
+              </div>
             </div>
           );
       })}

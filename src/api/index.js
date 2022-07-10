@@ -73,6 +73,7 @@ export async function modifiedPost(token, post, postid) {
     })
   });
   const result = await response.json();
+  return result;
 }
 
 export async function deletePost(token, postid) {
@@ -84,6 +85,7 @@ export async function deletePost(token, postid) {
     }
   });
   const result = await response.json();
+  return result;
 }
 
 export async function addMessage(token, postid, message) {

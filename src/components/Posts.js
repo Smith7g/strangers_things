@@ -6,6 +6,7 @@ const Posts = ({ loggedIn, setSinglePost,singlePost}) => {
   const [allPosts, setAllPosts] = useState([]);
   const [person, setPerson] = useState([]);
   const navigate = useNavigate();
+  
   useEffect(() => {
     async function fetchPosts() {
       const returnPosts = await getPosts();
