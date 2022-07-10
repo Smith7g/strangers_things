@@ -32,8 +32,8 @@ const Posts = ({ loggedIn, setSinglePost,singlePost}) => {
       {loggedIn ? (
         <>
           <h1>Posts</h1>
-          <button
-            className="addPost"
+          <button 
+            className="postButton"
             onClick={() => {
               navigate("/Add");
             }}
@@ -55,7 +55,7 @@ const Posts = ({ loggedIn, setSinglePost,singlePost}) => {
                         <b>Location:</b> {post.location}
                       </div>
                       {post.author._id === person._id  ?<button
-                        className="Edit"
+                        className="postButton"
                         onClick={() => {
                           catchId(post._id)
                           navigate(`/UserPost`)
@@ -64,7 +64,7 @@ const Posts = ({ loggedIn, setSinglePost,singlePost}) => {
                       >
                         View
                       </button> :<button
-                        className="View"
+                        className="postButton"
                         onClick={() => {
                           catchId(post._id)
                           navigate("/OthersPost");

@@ -5,6 +5,7 @@ import { getPosts, getProfile } from "../api";
 
 const OtherPost = ({ loggedIn, singlePost }) => {
   const [onePost, setOnePost] = useState([]);
+
   useEffect(() => {
     async function fetchPosts() {
       const returnPosts = await getPosts();
@@ -12,12 +13,10 @@ const OtherPost = ({ loggedIn, singlePost }) => {
     }
     fetchPosts();
   }, []);
-  console.log(onePost, "im a postman");
+
   return (
     <div>
       {onePost.map((post, index) => {
-        console.log(post._id, "Dont stop believing");
-        console.log(singlePost, "hey im helping");
         if (singlePost === post._id)
           return (
             <div key={index}>
@@ -31,10 +30,10 @@ const OtherPost = ({ loggedIn, singlePost }) => {
                 <div>
                   <b>Location:</b> {post.location}
                 </div>
-                <form>
-                  <input type="text" name="username" placeholder="Message" />
+                <form className="messageForm">
+                  <input className="messageText" type="text" name="username" placeholder="Message" />
                   <button
-                    className="message"
+                    className="messageButton"
                     // onClick={() => {
                     //   catchId(post._id);
                     //   navigate(`/UserPost`);

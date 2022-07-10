@@ -73,4 +73,34 @@ button {
     width: 100px;
     height: 30px;
 }
-.allPosts
+
+.postButton {
+    width: 300px;
+    height: 30px;
+}
+
+.messageButton {
+    margin-top: 20px;
+    width: 300px;
+    height: 30px;
+}
+
+.messageForm {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.messageText {
+    margin-top: 20px;
+    width: 300px;
+    height: 30px;
+}
+
+.deleteButton {
+    margin-top: 20px;
+    width: 300px;
+    height: 30px;
+    color: red;
+    border-color: red;
+}
