@@ -28,7 +28,7 @@ const Posts = ({ loggedIn, singlePost, setSinglePost }) => {
 
   return (
     <div className="posts">
-      {loggedIn ? (
+      {localStorage.getItem("loggedIn") ? (
         <>
           <h1>Posts</h1>
           <button

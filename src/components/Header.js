@@ -1,10 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import { Link } from "react-router-dom";
 
-const Header = ({ loggedIn, setLoggedIn }) => {
+const Header = ({ setLoggedIn }) => {
+  const [userLoggedIn, setUserLoggedIn] = useState(true);
   return (
     <div className="header">
-      {loggedIn ? (
+      {localStorage.getItem("loggedIn") ? (
         <>
           <Link className="titleMain" to="/Home">
             Stranger's Things
@@ -21,12 +22,13 @@ const Header = ({ loggedIn, setLoggedIn }) => {
             onClick={() => {
               localStorage.clear();
               setLoggedIn(false);
+              setUserLoggedIn(false)
             }}
           >
             LOG OUT
           </Link>
         </>
-      ) : (
+      ) : !localStorage.getItem("loggedIn") ? (
         <>
           <Link className="titleMain" to="/Home">
             Stranger's Things
@@ -38,7 +40,9 @@ const Header = ({ loggedIn, setLoggedIn }) => {
             LOGIN
           </Link>
         </>
-      )}
+      )
+      : null
+      }
     </div>
   );
 };

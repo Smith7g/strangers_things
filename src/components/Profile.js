@@ -15,11 +15,16 @@ const Profile = () => {
   }, []);
 
   return (
-    <div className="boxes">
-      <h1>{`Welcome ${myInfo.username}`}</h1>
-      <h3>Messages to Me:</h3>
-      {/* {messages will go here} */}
-    </div>
+    (localStorage.getItem('loggedIn')) ?
+        <div className="boxes">
+         <h1>{`Welcome ${myInfo.username}`}</h1>
+         <h3>Messages to Me:</h3>
+        </div> 
+        :
+        <div className="boxes">
+         <h1>{`Welcome!`}</h1>
+         <h3>Please log in or register to view a profile.</h3>
+        </div>
   );
 };
 

@@ -8,10 +8,10 @@ const UserPost = ({ singlePost }) => {
   const [onePost, setOnePost] = useState([]);
   const [editForm, setEditForm] = useState(false);
 
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [price, setPrice] = useState("");
-  const [location, setLocation] = useState("");
+  const [title, setTitle] = useState(onePost.title);
+  const [description, setDescription] = useState(onePost.description);
+  const [price, setPrice] = useState(onePost.price);
+  const [location, setLocation] = useState(onePost.location);
 
   useEffect(() => {
     async function fetchPosts() {
@@ -22,7 +22,6 @@ const UserPost = ({ singlePost }) => {
     fetchPosts();
   }, []);
 
-  //ISSUE IS HERE!!!
   const handleSubmit = async (event) => {
     event.preventDefault();
     const token = localStorage.getItem("token");
