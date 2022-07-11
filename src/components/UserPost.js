@@ -158,8 +158,9 @@ const UserPost = ({ singlePost }) => {
               <div>
                 {myInfo.data
                   ? myInfo.data.messages.map((message, index) => {
-                      return myInfo.data.username !==
-                        message.fromUser.username ? (
+                    console.log(myInfo)
+                      return (myInfo.data.username !==
+                        message.fromUser.username&& message.post._id===singlePost) ? (
                         <div key={index} className="allPosts">
                           <div>{message.fromUser.username}</div>
                           <div>{message.content}</div>
