@@ -1,12 +1,16 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { deletePost, getUser, modifiedPost } from "../api";
+import { useNavigate, Link } from "react-router-dom";
+import { deletePost, getUser, modifiedPost, getPosts, getProfile } from "../api";
 
 const UserPost = ({ singlePost }) => {
   const navigate = useNavigate();
   const [onePost, setOnePost] = useState([]);
   const [editForm, setEditForm] = useState(false);
+
+  let token = "";
+  const [myInfo, setMyInfo] = useState({});
+  const [allPosts, setAllPosts] = useState([]);
 
   const [title, setTitle] = useState(onePost.title);
   const [description, setDescription] = useState(onePost.description);
@@ -20,7 +24,21 @@ const UserPost = ({ singlePost }) => {
       setOnePost(returnPosts.posts);
     }
     fetchPosts();
+
+    async function fetchPosts2() {
+      const returnPosts = await getPosts();
+      setAllPosts(returnPosts);
+    }
+    fetchPosts2();
+    token = localStorage.getItem("token");
+    async function getMyInfo() {
+      const myReturnedInfo = await getProfile(token);
+      setMyInfo(myReturnedInfo);
+    }
+    getMyInfo();
   }, []);
+
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -136,6 +154,32 @@ const UserPost = ({ singlePost }) => {
                 </button>
               </>
               <div>{editForm ? editFormFunc(post) : null}</div>
+              <h3>Messages regarding post here:</h3>
+              <div>
+                {myInfo.data
+                  ? myInfo.data.messages.map((message, index) => {
+                      return myInfo.data.username !==
+                        message.fromUser.username ? (
+                        <div key={index} className="allPosts">
+                          <div>{message.fromUser.username}</div>
+                          <div>{message.content}</div>
+                          <div>
+                            View My Post:{" "}
+                            <Link
+                              className="Button"
+                              to={`/UserPost/`}
+                              onClick={() => {
+                                setSinglePost(message.post._id);
+                              }}
+                            >
+                              {`${message.post.title}`}
+                            </Link>
+                          </div>
+                        </div>
+                      ) : null;
+                    })
+                  : null}
+              </div>
             </div>
           );
       })}

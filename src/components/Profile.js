@@ -21,14 +21,12 @@ const Profile = ({ singlePost,setSinglePost }) => {
     }
     getMyInfo();
   }, []);
-console.log(myInfo, 'im premature')
-
+  
   return localStorage.getItem("loggedIn") ? (
     <div className="boxes">
       <h3>Messages from universe:</h3>
       <div>
-        {myInfo.data  ? myInfo.data.messages.map((message,index)=>{
-          // console.log(message.fromUser.username, "this is in my wockets")
+        {myInfo.data ? myInfo.data.messages.map((message, index)=>{
           return (
              (myInfo.data.username !== message.fromUser.username) ? <div key={index} className="allPosts">
             <div>
@@ -49,24 +47,12 @@ console.log(myInfo, 'im premature')
           </Link> 
             </div>
           </div> : null
-           
         )
-      }) : null}</div>
-    
-    <div className="boxes">
+      }) : <div className="boxes">
       <h1>{`Welcome!`}</h1>
       <h3>Please log in or register to view a profile.</h3>
+    </div>}
     </div>
-
-
-
-
-
-
-
-
-
-
 
 
 
