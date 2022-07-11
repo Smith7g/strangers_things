@@ -1,9 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { getPosts, getProfile } from "../api";
+import { getPosts } from "../api";
 
-const OtherPost = ({ loggedIn, singlePost }) => {
+const OtherPost = ({ singlePost }) => {
   const [onePost, setOnePost] = useState([]);
 
   useEffect(() => {
@@ -31,21 +30,19 @@ const OtherPost = ({ loggedIn, singlePost }) => {
                   <b>Location:</b> {post.location}
                 </div>
                 <form className="messageForm">
-                  <input className="messageText" type="text" name="username" placeholder="Message" />
-                  <button
-                    className="messageButton"
-                    // onClick={() => {
-                    //   catchId(post._id);
-                    //   navigate(`/UserPost`);
-                    // }}
-                  >
-                    Message
-                  </button>
+                  <input
+                    className="messageText"
+                    type="text"
+                    name="username"
+                    placeholder="Message"
+                  />
+                  <button className="messageButton">Message</button>
                 </form>
               </>
             </div>
           );
       })}
+      ;
     </div>
   );
 };

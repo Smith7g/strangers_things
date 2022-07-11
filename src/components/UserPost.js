@@ -1,9 +1,9 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { deletePost, getPosts, getProfile, modifiedPost } from "../api";
+import { deletePost, getProfile, modifiedPost } from "../api";
 
-const UserPost = ({ loggedIn, singlePost }) => {
+const UserPost = ({ singlePost }) => {
   const navigate = useNavigate();
   const [onePost, setOnePost] = useState([]);
   const [editForm, setEditForm] = useState(false);
@@ -22,19 +22,20 @@ const UserPost = ({ loggedIn, singlePost }) => {
     fetchPosts();
   }, []);
 
+  //ISSUE IS HERE!!!
   const handleSubmit = async (event) => {
     event.preventDefault();
-      const token =  localStorage.getItem('token')
-      const postid = singlePost;
-      const post = {
-          title : title,
-          description: description,
-          price: price,
-          location: location
-      }
-      const newPost = await modifiedPost(token, post, postid)
-      navigate("/Posts")
-      return newPost;
+    const token = localStorage.getItem("token");
+    const postid = singlePost;
+    const post = {
+      title: title,
+      description: description,
+      price: price,
+      location: location,
+    };
+    const newPost = await modifiedPost(token, post, postid);
+    navigate("/Posts");
+    return newPost;
   };
 
   const titleChange = (event) => {
@@ -54,18 +55,16 @@ const UserPost = ({ loggedIn, singlePost }) => {
   };
 
   const deleteUserPost = async () => {
-    const token =  localStorage.getItem('token')
+    const token = localStorage.getItem("token");
     const postid = singlePost;
     const erasePost = await deletePost(token, postid);
-    navigate("/Posts")
+    navigate("/Posts");
     return erasePost;
-  }
+  };
 
   const editFormFunc = (post) => {
     return (
-      <form onSubmit={handleSubmit}
-        id="loginForm"
-      >
+      <form onSubmit={handleSubmit} id="loginForm">
         <div className="boxes">
           <input
             className="input"
@@ -102,11 +101,7 @@ const UserPost = ({ loggedIn, singlePost }) => {
             <input type="checkbox" />
             Willing to Deliver?
           </label>
-          <button
-            type="submit"
-          >
-            CREATE
-          </button>
+          <button type="submit">CREATE</button>
         </div>
       </form>
     );
@@ -139,15 +134,13 @@ const UserPost = ({ loggedIn, singlePost }) => {
                 <button
                   className="deleteButton"
                   onClick={() => {
-                    deleteUserPost()
+                    deleteUserPost();
                   }}
                 >
                   Delete
                 </button>
               </>
-              <div>
-              {editForm ? editFormFunc(post) : null}
-              </div>
+              <div>{editForm ? editFormFunc(post) : null}</div>
             </div>
           );
       })}

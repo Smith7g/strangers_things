@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-import { Profile } from "./";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = ({ loggedIn, setLoggedIn }) => {
   return (
@@ -20,7 +19,7 @@ const Header = ({ loggedIn, setLoggedIn }) => {
             className="navButton"
             to="/"
             onClick={() => {
-              localStorage.clear()
+              localStorage.clear();
               setLoggedIn(false);
             }}
           >
