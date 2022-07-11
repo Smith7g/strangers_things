@@ -10,26 +10,22 @@ export async function getPosts() {
 export async function registerPerson(event) {
   const registerUsername = event.target[0].value;
   const registerPassword = event.target[1].value;
-  try {
-    const response = await fetch(`${BASEURL}/users/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+
+  const response = await fetch(`${BASEURL}/users/register`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user: {
+        username: registerUsername,
+        password: registerPassword,
       },
-      body: JSON.stringify({
-        user: {
-          username: registerUsername,
-          password: registerPassword,
-        },
-      }),
-    });
-    const result = await response.json();
-    const token = result.data.token;
-    localStorage.setItem("token", token);
-    const tokenFromStorage = localStorage.getItem("token");
-  } catch (err) {
-    console.error(err);
-  }
+    }),
+  });
+  const result = await response.json();
+  const token = result.data.token;
+  localStorage.setItem("token", token);
 }
 
 export async function confirmLogin(loginUsername, loginPassword) {
@@ -97,7 +93,9 @@ export async function addMessage(token, postid, message) {
       Authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
-      message: message,
+      message: {
+        content: message,
+      },
     }),
   });
   const result = await response.json();

@@ -114,14 +114,10 @@ const UserPost = ({ singlePost }) => {
             <div key={index}>
               <>
                 <h2>{post.title}</h2>
-                <div>{post.description}</div>
-                <div>
-                  <b>Price:</b> {post.price}
-                </div>
+                <h4>Description: {post.description}</h4>
+                <h4>Price: {post.price}</h4>
                 <h4>Seller: {post.author.username}</h4>
-                <div>
-                  <b>Location:</b> {post.location}
-                </div>
+                <h4>Location: {post.location}</h4>
                 <button
                   className="messageButton"
                   onClick={() => {

@@ -9,20 +9,17 @@ const Login = ({ setLoggedIn }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const token = await confirmLogin(username, password);
-      if (token) {
-        localStorage.setItem("token", token);
-        setUsername("");
-        setPassword("");
-        navigate("/Home");
-        setLoggedIn(true);
-        localStorage.setItem('loggedIn',true)
-      } else {
-        alert("Incorrect Username or Password");
-      }
-    } catch (error) {
-      console.log(error);
+    const token = await confirmLogin(username, password);
+    console.log(token);
+    if (token) {
+      localStorage.setItem("token", token);
+      setUsername("");
+      setPassword("");
+      navigate("/Home");
+      setLoggedIn(true);
+      localStorage.setItem("loggedIn", true);
+    } else {
+      alert("Incorrect Username or Password");
     }
   };
 

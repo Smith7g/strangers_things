@@ -17,9 +17,11 @@ const Add = () => {
       description: description,
       price: price,
       location: location,
+      willDeliver: willDeliver,
     };
     const newPost = await newUserPost(token, post);
     navigate("/Posts");
+    return newPost;
   };
 
   const titleChange = (event) => {

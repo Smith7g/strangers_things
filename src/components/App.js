@@ -10,15 +10,18 @@ import {
   Add,
   UserPost,
   OthersPost,
+  Message,
 } from "./";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [singlePost, setSinglePost] = useState("");
+  const [newMessage, setNewMessage] = useState("");
 
   return (
     <div>
       <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+      <Message singlePost={singlePost} newMessage={newMessage} />
       <Routes>
         <Route path="/Home" element={<Home loggedIn={loggedIn} />} />
         <Route
@@ -38,9 +41,16 @@ const App = () => {
         />
         <Route
           path="/OthersPost"
-          element={<OthersPost loggedIn={loggedIn} singlePost={singlePost} />}
+          element={
+            <OthersPost
+              loggedIn={loggedIn}
+              singlePost={singlePost}
+              newMessage={newMessage}
+              setNewMessage={setNewMessage}
+            />
+          }
         />
-        <Route path="/Profile" element={<Profile />} />
+        <Route path="/Profile" element={<Profile singlePost={singlePost}/>} />
         <Route path="/Register" element={<Register />} />
         <Route path="/" element={<Login setLoggedIn={setLoggedIn} />} />
       </Routes>

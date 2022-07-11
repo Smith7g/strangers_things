@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getPosts, getProfile } from "../api";
 
-const Posts = ({ loggedIn, singlePost, setSinglePost }) => {
+const Posts = ({ singlePost, setSinglePost }) => {
   const [allPosts, setAllPosts] = useState([]);
   const [person, setPerson] = useState([]);
   const navigate = useNavigate();
@@ -45,14 +45,10 @@ const Posts = ({ loggedIn, singlePost, setSinglePost }) => {
                   <div key={index} className="allPosts">
                     <>
                       <h2>{post.title}</h2>
-                      <div>{post.description}</div>
-                      <div>
-                        <b>Price:</b> {post.price}
-                      </div>
-                      <h4>Seller: {post.author.username}</h4>
-                      <div>
-                        <b>Location:</b> {post.location}
-                      </div>
+                      <div> Description: {post.description}</div>
+                      <h4>Price: {post.price}</h4>
+                      <h4>Seller: {post.author.username} </h4>
+                      <h4>Location: {post.location}</h4>
                       {post.author._id === person._id ? (
                         <button
                           className="postButton"

@@ -1,8 +1,8 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { getPosts } from "../api";
+import { getPosts, addMessage } from "../api";
 
-const OtherPost = ({ singlePost }) => {
+const OtherPost = ({ singlePost, newMessage, setNewMessage }) => {
   const [onePost, setOnePost] = useState([]);
 
   useEffect(() => {
@@ -13,6 +13,19 @@ const OtherPost = ({ singlePost }) => {
     fetchPosts();
   }, []);
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const token = localStorage.getItem("token");
+    const postid = singlePost;
+    const postMessage = await addMessage(token, postid, newMessage);
+    console.log(postMessage);
+    return postMessage;
+  };
+
+  const messageChange = (event) => {
+    setNewMessage(event.target.value);
+  };
+
   return (
     <div>
       {onePost.map((post, index) => {
@@ -21,20 +34,18 @@ const OtherPost = ({ singlePost }) => {
             <div key={index}>
               <>
                 <h2>{post.title}</h2>
-                <div>{post.description}</div>
-                <div>
-                  <b>Price:</b> {post.price}
-                </div>
+                <h4>Description: {post.description}</h4>
+                <h4>Price: {post.price}</h4>
                 <h4>Seller: {post.author.username}</h4>
-                <div>
-                  <b>Location:</b> {post.location}
-                </div>
-                <form className="messageForm">
+                <h4>Location: {post.location}</h4>
+                <form className="messageForm" onSubmit={handleSubmit}>
                   <input
                     className="messageText"
                     type="text"
                     name="username"
                     placeholder="Message"
+                    onChange={messageChange}
+                    value={newMessage}
                   />
                   <button className="messageButton">Message</button>
                 </form>
@@ -42,7 +53,6 @@ const OtherPost = ({ singlePost }) => {
             </div>
           );
       })}
-      ;
     </div>
   );
 };
