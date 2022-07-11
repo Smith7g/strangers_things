@@ -57,6 +57,17 @@ export async function getProfile(token) {
   const profile = result
   return profile;
 }
+export async function getUser(token) {
+  const response = await fetch(`${BASEURL}/users/me`, {
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const result = await response.json();
+  const profile = result.data
+  return profile;
+}
 
 export async function modifiedPost(token, post, postid) {
   const response = await fetch(`${BASEURL}/posts/${postid}`, {

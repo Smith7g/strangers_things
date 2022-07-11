@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getPosts, getProfile } from "../api";
+import { getPosts, getUser } from "../api";
 
 const Posts = ({ singlePost, setSinglePost }) => {
   const [allPosts, setAllPosts] = useState([]);
@@ -15,7 +15,7 @@ const Posts = ({ singlePost, setSinglePost }) => {
     fetchPosts();
     async function fetchPerson() {
       const token = localStorage.getItem("token");
-      const returnProfile = await getProfile(token);
+      const returnProfile = await getUser(token);
       setPerson(returnProfile);
     }
     fetchPerson();

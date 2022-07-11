@@ -21,49 +21,55 @@ const Profile = ({ singlePost,setSinglePost }) => {
     }
     getMyInfo();
   }, []);
-console.log(myInfo)
+console.log(myInfo, 'im premature')
 
   return localStorage.getItem("loggedIn") ? (
     <div className="boxes">
-      {myInfo.data ? <h1>{`Welcome ${myInfo.data.username}`}</h1> : null}
-      <h3>Messages from Me:</h3>
+      <h3>Messages from universe:</h3>
       <div>
-      <div>
-        {myInfo.data ? myInfo.data.posts.map((post,index)=>{ 
-        return (
-          <div key={index} className="allPosts">
+        {myInfo.data  ? myInfo.data.messages.map((message,index)=>{
+          // console.log(message.fromUser.username, "this is in my wockets")
+          return (
+             (myInfo.data.username !== message.fromUser.username) ? <div key={index} className="allPosts">
             <div>
+            {message.fromUser.username}
             </div>
             <div>
-            {myInfo.data.posts ? myInfo.data.messages.map((message,index) =>{
-              return(
-                <div>
-                  <div>
-                    From: {`${fromUser.username}`}
-                  </div>
-                  <div>
-                  
-                  </div>
-                </div>
-              )
-            
-            }): null}
+            {message.content}
             </div>
-            {/* <div>
-            Message Again:<Link
+            <div>
+            View My Post: <Link
             className="Button"
-            to={`/OthersPost/`}
+            to={`/UserPost/`}
             onClick={() => {
               setSinglePost(message.post._id)
             }}
           >
             {`${message.post.title}`}
           </Link> 
-            </div> */}
-          </div>
+            </div>
+          </div> : null
+           
         )
       }) : null}</div>
-      </div>
+    
+    <div className="boxes">
+      <h1>{`Welcome!`}</h1>
+      <h3>Please log in or register to view a profile.</h3>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
       <h3>Messages from Me:</h3>
       <div>
         {myInfo.data ? myInfo.data.messages.map((message,index)=>{

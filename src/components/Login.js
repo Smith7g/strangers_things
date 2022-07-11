@@ -22,7 +22,6 @@ const Login = ({ setLoggedIn }) => {
       alert("Incorrect Username or Password");
     }
   };
-
   const userNameChange = (event) => {
     setUsername(event.target.value);
   };

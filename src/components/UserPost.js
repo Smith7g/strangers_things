@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { deletePost, getProfile, modifiedPost } from "../api";
+import { deletePost, getUser, modifiedPost } from "../api";
 
 const UserPost = ({ singlePost }) => {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const UserPost = ({ singlePost }) => {
   useEffect(() => {
     async function fetchPosts() {
       const token = localStorage.getItem("token");
-      const returnPosts = await getProfile(token);
+      const returnPosts = await getUser(token);
       setOnePost(returnPosts.posts);
     }
     fetchPosts();
