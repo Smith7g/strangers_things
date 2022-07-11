@@ -96,13 +96,11 @@ const Posts = ({ singlePost, setSinglePost }) => {
                       </div>
                     </>
                   </div>
-                );
+                )
               })
             : null}
-          ;
         </>
       )}
-      ;
     </div>
   );
 };

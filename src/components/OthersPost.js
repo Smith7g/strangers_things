@@ -19,6 +19,8 @@ const OtherPost = ({ singlePost, newMessage, setNewMessage }) => {
     const postid = singlePost;
     const postMessage = await addMessage(token, postid, newMessage);
     console.log(postMessage);
+    setNewMessage("")
+    alert("Message has sent successfully")
     return postMessage;
   };
 

@@ -50,7 +50,7 @@ const App = () => {
             />
           }
         />
-        <Route path="/Profile" element={<Profile singlePost={singlePost}/>} />
+        <Route path="/Profile" element={<Profile singlePost={singlePost} setSinglePost={setSinglePost}/>} />
         <Route path="/Register" element={<Register />} />
         <Route path="/" element={<Login setLoggedIn={setLoggedIn} />} />
       </Routes>

@@ -54,7 +54,7 @@ export async function getProfile(token) {
     },
   });
   const result = await response.json();
-  const profile = result.data;
+  const profile = result
   return profile;
 }
 
