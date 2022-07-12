@@ -11,7 +11,6 @@ import {
   UserPost,
   OthersPost,
 } from "./";
-// This is a test
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [singlePost, setSinglePost] = useState("");

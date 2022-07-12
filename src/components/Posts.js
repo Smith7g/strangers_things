@@ -5,6 +5,7 @@ import { getPosts, getUserPosts } from "../api";
 const Posts = ({ singlePost, setSinglePost }) => {
   const [allPosts, setAllPosts] = useState([]);
   const [person, setPerson] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,6 +23,33 @@ const Posts = ({ singlePost, setSinglePost }) => {
     fetchPerson();
   }, []);
 
+  const postMatches = (posts, text) => {
+    console.log(posts, "do i have content");
+    if (posts.title.toLowerCase().includes(text)) {
+      return true;
+    } else if (posts.description.toLowerCase().includes(text)) {
+      return true;
+    } else if (posts.author.username.toLowerCase().includes(text)) {
+      return true;
+    } else if (posts.location.toLowerCase().includes(text)) {
+      return true;
+    } else if (posts.price.toLowerCase().includes(text)) {
+      return true;
+    } else {
+      return false;
+    }
+  };
+  const filteredPosts = allPosts.filter((post) =>
+    postMatches(post, searchTerm)
+  );
+  const postsToDisplay = searchTerm.length ? filteredPosts : allPosts;
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+    postMatches();
+    setSearchTerm(postsToDisplay);
+  };
+
   const catchId = (Id) => {
     setSinglePost(Id);
     return singlePost;
@@ -32,6 +60,13 @@ const Posts = ({ singlePost, setSinglePost }) => {
       {localStorage.getItem("loggedIn") ? (
         <>
           <h1>Posts</h1>
+          <form>
+            <input
+              type="text"
+              placeholder="Search"
+              onChange={handleChange}
+            ></input>
+          </form>
           <button
             className="postButton"
             onClick={() => {
@@ -41,7 +76,7 @@ const Posts = ({ singlePost, setSinglePost }) => {
             Add Post
           </button>
           {allPosts.length
-            ? allPosts.map((post, index) => {
+            ? postsToDisplay.map((post, index) => {
                 return (
                   <div key={index} className="allPosts">
                     <h2>{post.title}</h2>

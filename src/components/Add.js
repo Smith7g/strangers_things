@@ -26,7 +26,7 @@ const Add = () => {
   const titleChange = (event) => {
     setTitle(event.target.value);
   };
-
+  
   const descriptionChange = (event) => {
     setDescription(event.target.value);
   };
@@ -51,6 +51,7 @@ const Add = () => {
             placeholder="Title*"
             required={true}
             onChange={titleChange}
+            
           />
           <input
             className="input"
