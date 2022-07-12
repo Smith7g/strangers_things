@@ -43,6 +43,7 @@ export async function confirmLogin(loginUsername, loginPassword) {
   });
   const result = await response.json();
   const token = result.data.token;
+  console.log(token, " im in the api")
   return token;
 }
 

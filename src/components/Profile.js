@@ -24,7 +24,7 @@ const Profile = ({ singlePost,setSinglePost }) => {
   
   return localStorage.getItem("loggedIn") ? (
     <div className="boxes">
-      <h3>Messages from universe:</h3>
+      <h3>Messages from Shoppers:</h3>
       <div>
         {myInfo.data ? myInfo.data.messages.map((message, index)=>{
           return (
@@ -48,10 +48,7 @@ const Profile = ({ singlePost,setSinglePost }) => {
             </div>
           </div> : null
         )
-      }) : <div className="boxes">
-      <h1>{`Welcome!`}</h1>
-      <h3>Please log in or register to view a profile.</h3>
-    </div>}
+      }) : null}
     </div>
 
 
@@ -82,12 +79,7 @@ const Profile = ({ singlePost,setSinglePost }) => {
         )
       }) : null}</div>
     </div>
-  ) : (
-    <div className="boxes">
-      <h1>{`Welcome!`}</h1>
-      <h3>Please log in or register to view a profile.</h3>
-    </div>
-  );
+  ) : null
 };
 
 export default Profile;

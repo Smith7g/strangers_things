@@ -18,6 +18,7 @@ const Add = () => {
       price: price,
       location: location,
     };
+    alert('Post has been Added!')
     const newPost = await newUserPost(token, post);
     navigate("/Posts");
     return newPost;
@@ -26,7 +27,7 @@ const Add = () => {
   const titleChange = (event) => {
     setTitle(event.target.value);
   };
-  
+
   const descriptionChange = (event) => {
     setDescription(event.target.value);
   };

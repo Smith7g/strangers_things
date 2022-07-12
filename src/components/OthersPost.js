@@ -34,11 +34,17 @@ const OtherPost = ({ singlePost, newMessage, setNewMessage }) => {
           return (
             <div key={index}>
               <>
-                <h2>{post.title}</h2>
-                <h4>Description: {post.description}</h4>
-                <h4>Price: {post.price}</h4>
-                <h4>Seller: {post.author.username}</h4>
-                <h4>Location: {post.location}</h4>
+              <h2>{post.title}</h2>
+                    <div>{post.description}</div>
+                    <div>
+                      <b>Price:</b> {post.price}
+                    </div>
+                    <div>
+                      <b>Seller:</b> {post.author.username}
+                    </div>
+                    <div>
+                      <b>Location:</b> {post.location}
+                    </div>
                 <form className="messageForm" onSubmit={handleSubmit}>
                   <input
                     className="messageText"
@@ -46,6 +52,7 @@ const OtherPost = ({ singlePost, newMessage, setNewMessage }) => {
                     name="username"
                     placeholder="Message"
                     onChange={messageChange}
+                    value={newMessage}
                   />
                   <button type="submit" className="messageButton">Message</button>
                 </form>

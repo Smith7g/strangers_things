@@ -48,6 +48,7 @@ const UserPost = ({ singlePost }) => {
       location: location,
     };
     const newPost = await modifiedPost(token, post, postid);
+    alert('Post has been Updated!')
     navigate("/Posts");
     return newPost;
   };
@@ -72,6 +73,7 @@ const UserPost = ({ singlePost }) => {
     const token = localStorage.getItem("token");
     const postid = singlePost;
     const erasePost = await deletePost(token, postid);
+    alert('Post has been Deleted!')
     navigate("/Posts");
     return erasePost;
   };
@@ -128,11 +130,14 @@ const UserPost = ({ singlePost }) => {
           return (
             <div key={index}>
               <>
-                <h2>{post.title}</h2>
-                <h4>Description: {post.description}</h4>
-                <h4>Price: {post.price}</h4>
-                <h4>Seller: {post.author.username}</h4>
-                <h4>Location: {post.location}</h4>
+              <h2>{post.title}</h2>
+                    <div>{post.description}</div>
+                    <div>
+                      <b>Price:</b> {post.price}
+                    </div>
+                    <div>
+                      <b>Location:</b> {post.location}
+                    </div>
                 <button
                   className="messageButton"
                   onClick={() => {

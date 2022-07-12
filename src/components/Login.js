@@ -19,7 +19,7 @@ const Login = ({ setLoggedIn }) => {
       setLoggedIn(true);
       localStorage.setItem("loggedIn", true);
     } else {
-      alert("Incorrect Username or Password");
+      alert("Incorrect Username or Password")
     }
   };
 
