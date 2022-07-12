@@ -43,7 +43,6 @@ export async function confirmLogin(loginUsername, loginPassword) {
   });
   const result = await response.json();
   const token = result.data.token;
-  console.log(token, " im in the api")
   return token;
 }
 
@@ -55,7 +54,7 @@ export async function getProfile(token) {
     },
   });
   const result = await response.json();
-  const profile = result
+  const profile = result;
   return profile;
 }
 
@@ -67,7 +66,7 @@ export async function getUserPosts(token) {
     },
   });
   const result = await response.json();
-  const profile = result.data
+  const profile = result.data;
   return profile;
 }
 

@@ -60,7 +60,7 @@ const Posts = ({ singlePost, setSinglePost }) => {
       {localStorage.getItem("loggedIn") ? (
         <>
           <div className="postsTitle">
-            <h1>Posts</h1>
+            <h1 className="homeTitle">Posts</h1>
             <form>
               <input
                 className="searchBar"
@@ -83,14 +83,17 @@ const Posts = ({ singlePost, setSinglePost }) => {
                 return (
                   <div key={index} className="allPosts">
                     <h2>{post.title}</h2>
-                    <div>{post.description}</div>
-                    <div>
+                    <div className="postInfo">
+                      <b>Description: </b>
+                      {post.description}
+                    </div>
+                    <div className="postInfo">
                       <b>Price:</b> {post.price}
                     </div>
-                    <div>
+                    <div className="postInfo">
                       <b>Seller:</b> {post.author.username}
                     </div>
-                    <div>
+                    <div className="postInfo">
                       <b>Location:</b> {post.location}
                     </div>
                     {post.author._id === person._id ? (
@@ -122,7 +125,7 @@ const Posts = ({ singlePost, setSinglePost }) => {
       ) : (
         <>
           <div className="postsTitle">
-            <h1>Posts</h1>
+            <h1 className="homeTitle">Posts</h1>
             <form>
               <input
                 className="searchBar"
@@ -138,14 +141,17 @@ const Posts = ({ singlePost, setSinglePost }) => {
                   <div key={index} className="allPosts">
                     <>
                       <h2>{post.title}</h2>
-                      <div>{post.description}</div>
-                      <div>
+                      <div className="postInfo">
+                        <b>Description: </b>
+                        {post.description}
+                      </div>
+                      <div className="postInfo">
                         <b>Price:</b> {post.price}
                       </div>
-                      <div>
+                      <div className="postInfo">
                         <b>Seller:</b> {post.author.username}
                       </div>
-                      <div>
+                      <div className="postInfo">
                         <b>Location:</b> {post.location}
                       </div>
                     </>

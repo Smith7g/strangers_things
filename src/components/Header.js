@@ -1,9 +1,9 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Header = ({ setLoggedIn }) => {
   const [userLoggedIn, setUserLoggedIn] = useState(true);
-  
+
   return (
     <div className="header">
       {localStorage.getItem("loggedIn") ? (
@@ -41,9 +41,7 @@ const Header = ({ setLoggedIn }) => {
             LOGIN
           </Link>
         </>
-      )
-      : null
-      }
+      ) : null}
     </div>
   );
 };

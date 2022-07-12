@@ -7,10 +7,11 @@
 }
 
 .allPosts {
-    box-shadow: 10px 5px 10px;
-    border: 1px solid;
-    margin: 10px;
-    padding: 10px;
+  box-shadow: 0px 15px 10px -15px black;
+  border: 1px solid;
+  margin: 10px;
+  margin-bottom: 20px;
+  padding: 10px;
 }
 
 .input,
@@ -70,6 +71,7 @@ button {
 
 .homeTitle {
   font-family: Barlow, Arial, Helvetica, sans-serif;
+  text-decoration: underline;
 }
 
 .homeButton {
@@ -86,12 +88,13 @@ button {
 .messageButton {
   margin-top: 20px;
   width: 300px;
-  height: 30px;
+  height: 37px;
 }
 
 .messageForm {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  padding-left: 10px;
 }
 
 .messageText {
@@ -103,7 +106,7 @@ button {
 .deleteButton {
   margin-top: 20px;
   width: 300px;
-  height: 30px;
+  height: 38px;
   color: red;
   border-color: red;
 }
@@ -119,11 +122,33 @@ button {
 
 .searchBar {
   width: 300px;
-  height: 23px;
+  height: 32px;
   margin-left: 10px;
 }
 
 .postButton {
   width: 300px;
-  height: 30px;
+  height: 38px;
+}
+
+.profileTitles {
+  font-family: Barlow, Arial, Helvetica, sans-serif;
+  text-decoration: underline;
+  margin-left: 15px;
+}
+
+.profileBoxes {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 500px;
+}
+
+.postInfo {
+  padding-bottom: 7px;
+}
+
+h2 {
+  font-family: Barlow, Arial, Helvetica, sans-serif;
+  text-decoration: underline;
 }

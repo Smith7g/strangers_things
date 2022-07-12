@@ -18,7 +18,7 @@ const Add = () => {
       price: price,
       location: location,
     };
-    alert('Post has been Added!')
+    alert("Post has been Added!");
     const newPost = await newUserPost(token, post);
     navigate("/Posts");
     return newPost;
@@ -52,7 +52,6 @@ const Add = () => {
             placeholder="Title*"
             required={true}
             onChange={titleChange}
-            
           />
           <input
             className="input"

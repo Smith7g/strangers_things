@@ -18,36 +18,34 @@ const App = () => {
 
   return (
     <div>
-      <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+      <Header setLoggedIn={setLoggedIn} />
       <Routes>
-        <Route path="/Home" element={<Home loggedIn={loggedIn} />} />
+        <Route path="/Home" element={<Home />} />
         <Route
           path="/Posts"
           element={
-            <Posts
-              loggedIn={loggedIn}
-              singlePost={singlePost}
-              setSinglePost={setSinglePost}
-            />
+            <Posts singlePost={singlePost} setSinglePost={setSinglePost} />
           }
         />
-        <Route path="/Add" element={<Add loggedIn={loggedIn} />} />
+        <Route path="/Add" element={<Add />} />
         <Route
           path="/UserPost"
-          element={<UserPost loggedIn={loggedIn} singlePost={singlePost} />}
+          element={<UserPost singlePost={singlePost} />}
         />
         <Route
           path="/OthersPost"
           element={
             <OthersPost
-              loggedIn={loggedIn}
               singlePost={singlePost}
               newMessage={newMessage}
               setNewMessage={setNewMessage}
             />
           }
         />
-        <Route path="/Profile" element={<Profile singlePost={singlePost} setSinglePost={setSinglePost}/>} />
+        <Route
+          path="/Profile"
+          element={<Profile setSinglePost={setSinglePost} />}
+        />
         <Route path="/Register" element={<Register />} />
         <Route path="/" element={<Login setLoggedIn={setLoggedIn} />} />
       </Routes>

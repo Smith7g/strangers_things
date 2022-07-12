@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <div className="Home">
-      {(localStorage.getItem('loggedIn')) ? (
+      {localStorage.getItem("loggedIn") ? (
         <>
           <h1 className="homeTitle">Welcome to Stranger's Things</h1>
           {myInfo && myInfo.username ? (

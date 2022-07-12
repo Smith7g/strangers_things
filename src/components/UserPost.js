@@ -1,14 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { deletePost, getUserPosts, modifiedPost, getPosts, getProfile } from "../api";
+import { useNavigate } from "react-router-dom";
+import { deletePost, getUserPosts, modifiedPost, getProfile } from "../api";
 
 const UserPost = ({ singlePost }) => {
   const navigate = useNavigate();
   const [onePost, setOnePost] = useState([]);
   const [editForm, setEditForm] = useState(false);
   const [myInfo, setMyInfo] = useState({});
-  const [allPosts, setAllPosts] = useState([]);
 
   const [title, setTitle] = useState(onePost.title);
   const [description, setDescription] = useState(onePost.description);
@@ -22,12 +21,6 @@ const UserPost = ({ singlePost }) => {
       setOnePost(returnPosts.posts);
     }
     fetchPosts();
-
-    async function fetchPosts2() {
-      const returnPosts = await getPosts();
-      setAllPosts(returnPosts);
-    }
-    fetchPosts2();
 
     async function getMyInfo() {
       const token = localStorage.getItem("token");
@@ -48,7 +41,7 @@ const UserPost = ({ singlePost }) => {
       location: location,
     };
     const newPost = await modifiedPost(token, post, postid);
-    alert('Post has been Updated!')
+    alert("Post has been Updated!");
     navigate("/Posts");
     return newPost;
   };
@@ -73,7 +66,7 @@ const UserPost = ({ singlePost }) => {
     const token = localStorage.getItem("token");
     const postid = singlePost;
     const erasePost = await deletePost(token, postid);
-    alert('Post has been Deleted!')
+    alert("Post has been Deleted!");
     navigate("/Posts");
     return erasePost;
   };
@@ -130,14 +123,19 @@ const UserPost = ({ singlePost }) => {
           return (
             <div key={index}>
               <>
-              <h2>{post.title}</h2>
-                    <div>{post.description}</div>
-                    <div>
-                      <b>Price:</b> {post.price}
-                    </div>
-                    <div>
-                      <b>Location:</b> {post.location}
-                    </div>
+                <div className="allPosts">
+                  <h2>{post.title}</h2>
+                  <div className="postInfo">
+                    <b>Description: </b>
+                    {post.description}
+                  </div>
+                  <div className="postInfo">
+                    <b>Price:</b> {post.price}
+                  </div>
+                  <div className="postInfo">
+                    <b>Location:</b> {post.location}
+                  </div>
+                </div>
                 <button
                   className="messageButton"
                   onClick={() => {
@@ -160,11 +158,16 @@ const UserPost = ({ singlePost }) => {
               <div>
                 {myInfo.data
                   ? myInfo.data.messages.map((message, index) => {
-                      return (myInfo.data.username !==
-                        message.fromUser.username && message.post._id === singlePost) ? (
+                      return myInfo.data.username !==
+                        message.fromUser.username &&
+                        message.post._id === singlePost ? (
                         <div key={index} className="allPosts">
-                          <div>{message.fromUser.username}</div>
-                          <div>{message.content}</div>
+                          <div className="postInfo">
+                            <b>
+                              <u>{message.fromUser.username}</u>
+                            </b>
+                          </div>
+                          <div className="postInfo">{message.content}</div>
                         </div>
                       ) : null;
                     })
