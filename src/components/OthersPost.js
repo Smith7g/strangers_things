@@ -18,9 +18,8 @@ const OtherPost = ({ singlePost, newMessage, setNewMessage }) => {
     const token = localStorage.getItem("token");
     const postid = singlePost;
     const postMessage = await addMessage(token, postid, newMessage);
-    console.log(postMessage);
-    setNewMessage("")
-    alert("Message has sent successfully")
+    alert("Message has sent successfully");
+    setNewMessage("");
     return postMessage;
   };
 
@@ -47,9 +46,8 @@ const OtherPost = ({ singlePost, newMessage, setNewMessage }) => {
                     name="username"
                     placeholder="Message"
                     onChange={messageChange}
-                    value={newMessage}
                   />
-                  <button className="messageButton">Message</button>
+                  <button type="submit" className="messageButton">Message</button>
                 </form>
               </>
             </div>

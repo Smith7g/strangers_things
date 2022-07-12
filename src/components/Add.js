@@ -17,7 +17,6 @@ const Add = () => {
       description: description,
       price: price,
       location: location,
-      willDeliver: willDeliver,
     };
     const newPost = await newUserPost(token, post);
     navigate("/Posts");
@@ -52,7 +51,6 @@ const Add = () => {
             placeholder="Title*"
             required={true}
             onChange={titleChange}
-            value={title}
           />
           <input
             className="input"
@@ -61,7 +59,6 @@ const Add = () => {
             placeholder="Description*"
             required={true}
             onChange={descriptionChange}
-            value={description}
           />
           <input
             className="input"
@@ -70,7 +67,6 @@ const Add = () => {
             placeholder="Price*"
             required={true}
             onChange={priceChange}
-            value={price}
           />
           <input
             className="input"
@@ -78,7 +74,6 @@ const Add = () => {
             name="location"
             placeholder="Location"
             onChange={locationChange}
-            value={location}
           />
           <label>
             <input type="checkbox" />

@@ -8,4 +8,3 @@ export { default as Home } from "./Home";
 export { default as Add } from "./Add";
 export { default as UserPost } from "./UserPost";
 export { default as OthersPost } from "./OthersPost";
-export { default as Message } from "./Message";

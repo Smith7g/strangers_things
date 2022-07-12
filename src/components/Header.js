@@ -23,7 +23,7 @@ const Header = ({ setLoggedIn }) => {
             onClick={() => {
               localStorage.clear();
               setLoggedIn(false);
-              setUserLoggedIn(false)
+              setUserLoggedIn(false);
             }}
           >
             LOG OUT

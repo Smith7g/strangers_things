@@ -1,14 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { deletePost, getUser, modifiedPost, getPosts, getProfile } from "../api";
+import { deletePost, getUserPosts, modifiedPost, getPosts, getProfile } from "../api";
 
 const UserPost = ({ singlePost }) => {
   const navigate = useNavigate();
   const [onePost, setOnePost] = useState([]);
   const [editForm, setEditForm] = useState(false);
-
-  let token = "";
   const [myInfo, setMyInfo] = useState({});
   const [allPosts, setAllPosts] = useState([]);
 
@@ -20,7 +18,7 @@ const UserPost = ({ singlePost }) => {
   useEffect(() => {
     async function fetchPosts() {
       const token = localStorage.getItem("token");
-      const returnPosts = await getUser(token);
+      const returnPosts = await getUserPosts(token);
       setOnePost(returnPosts.posts);
     }
     fetchPosts();
@@ -30,15 +28,14 @@ const UserPost = ({ singlePost }) => {
       setAllPosts(returnPosts);
     }
     fetchPosts2();
-    token = localStorage.getItem("token");
+
     async function getMyInfo() {
+      const token = localStorage.getItem("token");
       const myReturnedInfo = await getProfile(token);
       setMyInfo(myReturnedInfo);
     }
     getMyInfo();
   }, []);
-
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -118,7 +115,7 @@ const UserPost = ({ singlePost }) => {
             <input type="checkbox" />
             Willing to Deliver?
           </label>
-          <button type="submit">CREATE</button>
+          <button type="submit">UPDATE</button>
         </div>
       </form>
     );
@@ -158,23 +155,11 @@ const UserPost = ({ singlePost }) => {
               <div>
                 {myInfo.data
                   ? myInfo.data.messages.map((message, index) => {
-                      return myInfo.data.username !==
-                        message.fromUser.username ? (
+                      return (myInfo.data.username !==
+                        message.fromUser.username && message.post._id === singlePost) ? (
                         <div key={index} className="allPosts">
                           <div>{message.fromUser.username}</div>
                           <div>{message.content}</div>
-                          <div>
-                            View My Post:{" "}
-                            <Link
-                              className="Button"
-                              to={`/UserPost/`}
-                              onClick={() => {
-                                setSinglePost(message.post._id);
-                              }}
-                            >
-                              {`${message.post.title}`}
-                            </Link>
-                          </div>
                         </div>
                       ) : null;
                     })

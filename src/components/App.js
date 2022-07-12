@@ -10,7 +10,6 @@ import {
   Add,
   UserPost,
   OthersPost,
-  Message,
 } from "./";
 
 const App = () => {
@@ -21,7 +20,6 @@ const App = () => {
   return (
     <div>
       <Header loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-      <Message singlePost={singlePost} newMessage={newMessage} />
       <Routes>
         <Route path="/Home" element={<Home loggedIn={loggedIn} />} />
         <Route

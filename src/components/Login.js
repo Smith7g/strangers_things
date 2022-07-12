@@ -10,7 +10,7 @@ const Login = ({ setLoggedIn }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const token = await confirmLogin(username, password);
-    console.log(token);
+
     if (token) {
       localStorage.setItem("token", token);
       setUsername("");
@@ -22,6 +22,7 @@ const Login = ({ setLoggedIn }) => {
       alert("Incorrect Username or Password");
     }
   };
+
   const userNameChange = (event) => {
     setUsername(event.target.value);
   };
@@ -43,7 +44,6 @@ const Login = ({ setLoggedIn }) => {
             required={true}
             minLength="1"
             onChange={userNameChange}
-            value={username}
           />
           <input
             className="input"
@@ -53,7 +53,6 @@ const Login = ({ setLoggedIn }) => {
             required={true}
             minLength="8"
             onChange={passwordChange}
-            value={password}
           />
           <button type="submit">Log In</button>
         </div>

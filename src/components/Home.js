@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getProfile } from "../api";
 
-const Home = ({ loggedIn }) => {
+const Home = () => {
   const navigate = useNavigate();
   const [myInfo, setMyInfo] = useState({});
-  let token = "";
 
   useEffect(() => {
-    token = localStorage.getItem("token");
+    const token = localStorage.getItem("token");
     async function getMyInfo() {
       const myReturnedInfo = await getProfile(token);
       setMyInfo(myReturnedInfo);

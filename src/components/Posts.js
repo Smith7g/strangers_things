@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getPosts, getUser } from "../api";
+import { getPosts, getUserPosts } from "../api";
 
 const Posts = ({ singlePost, setSinglePost }) => {
   const [allPosts, setAllPosts] = useState([]);
@@ -13,9 +13,10 @@ const Posts = ({ singlePost, setSinglePost }) => {
       setAllPosts(returnPosts);
     }
     fetchPosts();
+
     async function fetchPerson() {
       const token = localStorage.getItem("token");
-      const returnProfile = await getUser(token);
+      const returnProfile = await getUserPosts(token);
       setPerson(returnProfile);
     }
     fetchPerson();
@@ -37,45 +38,46 @@ const Posts = ({ singlePost, setSinglePost }) => {
               navigate("/Add");
             }}
           >
-            Add post
+            Add Post
           </button>
           {allPosts.length
             ? allPosts.map((post, index) => {
                 return (
                   <div key={index} className="allPosts">
-                    <>
-                      <h2>{post.title}</h2>
-                      <div> Description: {post.description}</div>
-                      <h4>Price: {post.price}</h4>
-                      <h4>Seller: {post.author.username} </h4>
-                      <h4>Location: {post.location}</h4>
-                      {post.author._id === person._id ? (
-                        <button
-                          className="postButton"
-                          onClick={() => {
-                            catchId(post._id);
-                            navigate(`/UserPost`);
-                          }}
-                        >
-                          View
-                        </button>
-                      ) : (
-                        <button
-                          className="postButton"
-                          onClick={() => {
-                            catchId(post._id);
-                            navigate("/OthersPost");
-                          }}
-                        >
-                          Send Message
-                        </button>
-                      )}
-                    </>
+                    <h2>{post.title}</h2>
+                    <div>{post.description}</div>
+                    <div>
+                      <b>Price:</b> {post.price}
+                    </div>
+                    <h4>Seller: {post.author.username}</h4>
+                    <div>
+                      <b>Location:</b> {post.location}
+                    </div>
+                    {post.author._id === person._id ? (
+                      <button
+                        className="postButton"
+                        onClick={() => {
+                          catchId(post._id);
+                          navigate(`/UserPost`);
+                        }}
+                      >
+                        View
+                      </button>
+                    ) : (
+                      <button
+                        className="postButton"
+                        onClick={() => {
+                          catchId(post._id);
+                          navigate("/OthersPost");
+                        }}
+                      >
+                        Send Message
+                      </button>
+                    )}
                   </div>
                 );
               })
             : null}
-          ;
         </>
       ) : (
         <>
@@ -96,7 +98,7 @@ const Posts = ({ singlePost, setSinglePost }) => {
                       </div>
                     </>
                   </div>
-                )
+                );
               })
             : null}
         </>
