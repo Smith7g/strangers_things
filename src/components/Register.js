@@ -50,6 +50,7 @@ const Register = () => {
             required={true}
             minLength="1"
             onChange={userNameChange}
+            value={regUsername}
           />
           <input
             className="input"
@@ -59,6 +60,7 @@ const Register = () => {
             required={true}
             minLength="8"
             onChange={passwordChange}
+            value={regPassword}
           />
           <input
             className="input"
@@ -68,6 +70,7 @@ const Register = () => {
             required={true}
             minLength="8"
             onChange={confirmPasswordChange}
+            value={confirmPassword}
           />
           <button type="submit">Sign Up</button>
         </div>

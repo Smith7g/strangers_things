@@ -83,11 +83,6 @@ button {
   height: 30px;
 }
 
-.postButton {
-  width: 300px;
-  height: 30px;
-}
-
 .messageButton {
   margin-top: 20px;
   width: 300px;
@@ -111,4 +106,24 @@ button {
   height: 30px;
   color: red;
   border-color: red;
+}
+
+.postsTitle {
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
+  flex-direction: row;
+  padding-right: 10px;
+  align-items: center;
+}
+
+.searchBar {
+  width: 300px;
+  height: 23px;
+  margin-left: 10px;
+}
+
+.postButton {
+  width: 300px;
+  height: 30px;
 }

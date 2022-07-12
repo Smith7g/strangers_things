@@ -24,7 +24,6 @@ const Posts = ({ singlePost, setSinglePost }) => {
   }, []);
 
   const postMatches = (posts, text) => {
-    console.log(posts, "do i have content");
     if (posts.title.toLowerCase().includes(text)) {
       return true;
     } else if (posts.description.toLowerCase().includes(text)) {
@@ -36,9 +35,10 @@ const Posts = ({ singlePost, setSinglePost }) => {
     } else if (posts.price.toLowerCase().includes(text)) {
       return true;
     } else {
-      return false;
+      return null;
     }
   };
+
   const filteredPosts = allPosts.filter((post) =>
     postMatches(post, searchTerm)
   );
@@ -59,22 +59,25 @@ const Posts = ({ singlePost, setSinglePost }) => {
     <div className="posts">
       {localStorage.getItem("loggedIn") ? (
         <>
-          <h1>Posts</h1>
-          <form>
-            <input
-              type="text"
-              placeholder="Search"
-              onChange={handleChange}
-            ></input>
-          </form>
-          <button
-            className="postButton"
-            onClick={() => {
-              navigate("/Add");
-            }}
-          >
-            Add Post
-          </button>
+          <div className="postsTitle">
+            <h1>Posts</h1>
+            <form>
+              <input
+                className="searchBar"
+                type="text"
+                placeholder="Search"
+                onChange={handleChange}
+              ></input>
+            </form>
+            <button
+              className="postButton"
+              onClick={() => {
+                navigate("/Add");
+              }}
+            >
+              Add Post
+            </button>
+          </div>
           {allPosts.length
             ? postsToDisplay.map((post, index) => {
                 return (
@@ -84,7 +87,9 @@ const Posts = ({ singlePost, setSinglePost }) => {
                     <div>
                       <b>Price:</b> {post.price}
                     </div>
-                    <h4>Seller: {post.author.username}</h4>
+                    <div>
+                      <b>Seller:</b> {post.author.username}
+                    </div>
                     <div>
                       <b>Location:</b> {post.location}
                     </div>
@@ -116,18 +121,30 @@ const Posts = ({ singlePost, setSinglePost }) => {
         </>
       ) : (
         <>
-          <h1>Posts</h1>
+          <div className="postsTitle">
+            <h1>Posts</h1>
+            <form>
+              <input
+                className="searchBar"
+                type="text"
+                placeholder="Search"
+                onChange={handleChange}
+              ></input>
+            </form>
+          </div>
           {allPosts.length
-            ? allPosts.map((post, index) => {
+            ? postsToDisplay.map((post, index) => {
                 return (
-                  <div key={index}>
+                  <div key={index} className="allPosts">
                     <>
                       <h2>{post.title}</h2>
                       <div>{post.description}</div>
                       <div>
                         <b>Price:</b> {post.price}
                       </div>
-                      <h4>Seller: {post.author.username}</h4>
+                      <div>
+                        <b>Seller:</b> {post.author.username}
+                      </div>
                       <div>
                         <b>Location:</b> {post.location}
                       </div>
